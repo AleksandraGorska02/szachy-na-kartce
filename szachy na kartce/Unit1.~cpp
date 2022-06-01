@@ -1,0 +1,1312 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "Unit1.h"
+#include "Unit2.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TForm1 *Form1;
+char pp1,pp2,pp3,pp4,pp5,
+pp6,pp7,pp8,pp9,pp10,
+pp11,pp12,pp13,pp14,pp15,            //"POWO£UJEMY DO ZYCZIA ZNAKI BEDACE WARTOSCIAMI POL(N=NIC,X=ZAMALOWANIE,O=KOLKO)
+pp16,pp17,pp18,pp19,pp20,
+pp21,pp22,pp23,pp24,pp25,
+pp26,pp27,pp28,pp29,pp30,
+pp31,pp32,pp33,pp34,pp35,
+pp36,pp37,pp38,pp39,pp40,
+pp41,pp42;
+
+
+char kto;  //CZYJ RUCH
+
+
+           int i;  //ZMIENNA LICZACA ILOSC RUCHÓW
+
+
+void sprawdz(){
+if(
+//----------------------------------------------------------------------------------------------------
+//POZIOME MOZLIWOSCI WYGRANEJ
+
+
+(pp1==pp2&&pp2==pp3&&pp3==pp4&&pp1!='n')||
+(pp2==pp3&&pp3==pp4&&pp4==pp5&&pp2!='n')||
+(pp5==pp6&&pp3==pp4&&pp4==pp5&&pp3!='n')||
+(pp5==pp6   &&   pp6==pp7   &&   pp4==pp5   &&   pp4!='n')||
+(pp5==pp6   &&   pp6==pp7   &&   pp4==pp5   &&   pp4!='n')||
+(pp8==pp9   &&   pp9==pp10   &&   pp10==pp11   &&   pp8!='n')||
+(pp9==pp10   &&   pp10==pp11   &&   pp11==pp12   &&   pp9!='n')||
+(pp13==pp12   &&   pp12==pp11   &&   pp11==pp10   &&   pp10!='n')||
+(pp11==pp12   &&   pp12==pp13   &&   pp13==pp14   &&   pp11!='n')||
+(pp15==pp16   &&   pp16==pp17   &&   pp17==pp18   &&   pp15!='n')||
+(pp19==pp18   &&   pp18==pp17   &&   pp17==pp16   &&   pp16!='n')||
+(pp17==pp18   &&   pp18==pp19   &&   pp19==pp20   &&   pp17!='n')||
+(pp21==pp20   &&   pp20==pp19   &&   pp19==pp18   &&   pp18!='n')||
+(pp25==pp24   &&   pp24==pp23   &&   pp23==pp22   &&   pp22!='n')||
+(pp25==pp26   &&   pp25==pp24   &&   pp24==pp23   &&   pp23!='n')||
+(pp27==pp26   &&   pp26==pp25   &&   pp24==pp25   &&   pp24!='n')||
+(pp28==pp27   &&   pp27==pp26   &&   pp26==pp25   &&   pp25!='n')||
+(pp32==pp31   &&   pp31==pp30   &&   pp30==pp29   &&   pp29!='n')||
+(pp33==pp32   &&   pp32==pp31   &&   pp31==pp30   &&   pp30!='n')||
+(pp34==pp33   &&   pp33==pp32   &&   pp32==pp31   &&   pp31!='n')||
+(pp35==pp34   &&   pp34==pp33   &&   pp33==pp32   &&   pp32!='n')||
+(pp39==pp38   &&   pp38==pp37   &&   pp37==pp36   &&   pp36!='n')||
+(pp40==pp39   &&   pp39==pp38   &&   pp38==pp37   &&   pp37!='n')||
+(pp41==pp40   &&   pp40==pp39   &&   pp39==pp38   &&   pp38!='n')||
+(pp42==pp41   &&   pp41==pp40   &&   pp40==pp39   &&   pp39!='n')||
+
+
+//------------------------------------------------------------------------------
+// PIONOWE MOZLIWOSCI WYGRANEJ
+
+
+(pp22==pp15   &&   pp15==pp8   &&   pp8==pp1   &&   pp1!='n')||
+(pp22==pp15   &&   pp15==pp8   &&   pp22==pp29   &&   pp8!='n')||
+(pp22==pp15   &&   pp36==pp29   &&   pp22==pp29   &&   pp15!='n')||
+(pp23==pp16   &&   pp16==pp9   &&   pp9==pp2   &&   pp2!='n')||
+(pp30==pp23   &&   pp23==pp16   &&   pp16==pp9   &&   pp9!='n')||
+(pp37==pp30   &&   pp30==pp23   &&   pp23==pp16   &&   pp16!='n')||
+(pp24==pp17   &&   pp17==pp10   &&   pp3==pp10   &&   pp3!='n')||
+(pp31==pp24   &&   pp24==pp17   &&   pp17==pp10   &&   pp10!='n')||
+(pp38==pp31   &&   pp31==pp24   &&   pp24==pp17   &&   pp17!='n')||
+(pp25==pp18   &&   pp18==pp11   &&   pp11==pp4   &&   pp4!='n')||
+(pp32==pp25   &&   pp25==pp18   &&   pp18==pp11   &&   pp11!='n')||
+(pp39==pp32   &&   pp32==pp25   &&   pp25==pp18   &&   pp18!='n')||
+(pp26==pp19   &&   pp19==pp12   &&   pp12==pp5   &&   pp5!='n')||
+(pp33==pp26   &&   pp26==pp19   &&   pp19==pp12   &&   pp12!='n')||
+(pp40==pp33   &&   pp33==pp26   &&   pp26==pp19   &&   pp19!='n')||
+(pp27==pp20   &&   pp20==pp13   &&   pp13==pp6   &&   pp6!='n')||
+(pp34==pp27   &&   pp27==pp20   &&   pp20==pp13   &&   pp13!='n')||
+(pp41==pp34   &&   pp34==pp27   &&   pp27==pp20   &&   pp20!='n')||
+(pp28==pp21   &&   pp21==pp14   &&   pp14==pp7   &&   pp7!='n')||
+(pp35==pp28   &&   pp28==pp21   &&   pp21==pp14   &&   pp14!='n')||
+(pp42==pp35   &&   pp35==pp28   &&   pp28==pp21   &&   pp21!='n')||
+
+
+//--------------------------------------------------------------------------------
+//UKOSNE W PRAWO MOZLIWOSCI WYGRANEJ
+
+
+(pp25==pp17   &&   pp17==pp9   &&   pp9==pp1   &&   pp1!='n')||
+(pp32==pp24   &&   pp24==pp16   &&   pp16==pp8   &&   pp8!='n')||
+(pp39==pp31   &&   pp31==pp23   &&   pp23==pp15   &&   pp15!='n')||
+(pp26==pp18   &&   pp18==pp10   &&   pp10==pp2   &&   pp2!='n')||
+(pp25==pp33   &&   pp17==pp25   &&   pp17==pp9   &&   pp9!='n')||
+(pp40==pp32   &&   pp32==pp24   &&   pp24==pp16   &&   pp16!='n')||
+(pp27==pp19   &&   pp19==pp11   &&   pp11==pp3   &&   pp3!='n')||
+(pp34==pp26   &&   pp26==pp18   &&   pp18==pp10   &&   pp10!='n')||
+(pp41==pp33   &&   pp33==pp25   &&   pp25==pp17   &&   pp17!='n')||
+(pp28==pp20   &&   pp20==pp12   &&   pp12==pp4   &&   pp4!='n')||
+(pp35==pp27   &&   pp27==pp19   &&   pp19==pp11   &&   pp11!='n')||
+(pp42==pp34   &&   pp34==pp26   &&   pp26==pp18   &&   pp18!='n')||
+
+
+//--------------------------------------------------------------------------------------
+//UKOSNE W LEWO MOZLIWOSCI WYGRANEJ
+
+
+(pp25==pp19   &&   pp19==pp13   &&   pp13==pp7   &&   pp7!='n')||
+(pp32==pp26   &&   pp26==pp20   &&   pp20==pp14   &&   pp14!='n')||
+(pp39==pp33   &&   pp33==pp27   &&   pp27==pp21   &&   pp21!='n')||
+(pp24==pp18   &&   pp18==pp12   &&   pp12==pp6   &&   pp6!='n')||
+(pp31==pp25   &&   pp25==pp19   &&   pp19==pp13   &&   pp13!='n')||
+(pp38==pp32   &&   pp32==pp26   &&   pp26==pp20   &&   pp20!='n')||
+(pp23==pp17   &&   pp17==pp11   &&   pp11==pp5   &&   pp5!='n')||
+(pp30==pp24   &&   pp24==pp18   &&   pp18==pp12   &&   pp12!='n')||
+(pp37==pp31   &&   pp31==pp25   &&   pp25==pp19   &&   pp19!='n')||
+(pp22==pp16   &&   pp16==pp10   &&   pp10==pp4   &&   pp4!='n')||
+(pp29==pp23   &&   pp17==pp23   &&   pp17==pp11   &&   pp11!='n')||
+(pp36==pp30   &&   pp30==pp24   &&   pp24==pp18   &&   pp18!='n')
+
+
+
+)
+{char *w;
+if(kto=='x') w="wygrywa kó³ko";
+else w="wygrywa zamalowanie";
+Application->MessageBox(w,"koniec gry",MB_OK);
+
+
+
+}
+
+   if(i==22){
+   Application->MessageBox("22 ruchy zosta³y wykonane","22 ruchy-informacja",MB_OK);}
+
+
+
+}
+
+
+//---------------------------------------------------------------------------
+__fastcall TForm1::TForm1(TComponent* Owner)
+        : TForm(Owner)
+{
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Jakgrac1Click(TObject *Sender)
+{
+Form2->ShowModal();  //POKAZUJEMY OKNO Z INSTRUKCJA
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::FormCreate(TObject *Sender)
+{
+   i=0;    //ZERUJEMY LICZNIK RUCHÓW
+
+p1->Picture->LoadFromFile("img/nic.bmp");
+p2->Picture->LoadFromFile("img/nic.bmp");
+p3->Picture->LoadFromFile("img/nic.bmp");
+p4->Picture->LoadFromFile("img/nic.bmp");           //TWORZYMY PLANSZE
+p5->Picture->LoadFromFile("img/nic.bmp");
+p6->Picture->LoadFromFile("img/nic.bmp");
+p7->Picture->LoadFromFile("img/nic.bmp");
+p8->Picture->LoadFromFile("img/nic.bmp");
+p9->Picture->LoadFromFile("img/nic.bmp");
+p10->Picture->LoadFromFile("img/nic.bmp");
+p11->Picture->LoadFromFile("img/nic.bmp");
+p12->Picture->LoadFromFile("img/nic.bmp");
+p13->Picture->LoadFromFile("img/nic.bmp");
+p14->Picture->LoadFromFile("img/nic.bmp");
+p15->Picture->LoadFromFile("img/nic.bmp");
+p16->Picture->LoadFromFile("img/nic.bmp");
+p17->Picture->LoadFromFile("img/nic.bmp");
+p18->Picture->LoadFromFile("img/nic.bmp");
+p19->Picture->LoadFromFile("img/nic.bmp");
+p20->Picture->LoadFromFile("img/nic.bmp");
+p21->Picture->LoadFromFile("img/nic.bmp");
+p22->Picture->LoadFromFile("img/nic.bmp");
+p23->Picture->LoadFromFile("img/nic.bmp");
+p24->Picture->LoadFromFile("img/nic.bmp");
+p25->Picture->LoadFromFile("img/nic.bmp");
+p26->Picture->LoadFromFile("img/nic.bmp");
+p27->Picture->LoadFromFile("img/nic.bmp");
+p28->Picture->LoadFromFile("img/nic.bmp");
+p29->Picture->LoadFromFile("img/nic.bmp");
+p30->Picture->LoadFromFile("img/nic.bmp");
+p31->Picture->LoadFromFile("img/nic.bmp");
+p32->Picture->LoadFromFile("img/nic.bmp");
+p33->Picture->LoadFromFile("img/nic.bmp");
+p34->Picture->LoadFromFile("img/nic.bmp");
+p35->Picture->LoadFromFile("img/nic.bmp");
+p36->Picture->LoadFromFile("img/nic.bmp");
+p37->Picture->LoadFromFile("img/nic.bmp");
+p38->Picture->LoadFromFile("img/nic.bmp");
+p39->Picture->LoadFromFile("img/nic.bmp");
+p40->Picture->LoadFromFile("img/nic.bmp");
+p41->Picture->LoadFromFile("img/nic.bmp");
+p42->Picture->LoadFromFile("img/nic.bmp");
+tura->Picture->LoadFromFile("img/o.bmp");//tura
+
+pp1='n';pp2='n';pp3='n';pp4='n';pp5='n';
+pp6='n';pp7='n';pp8='n';pp9='n';pp10='n';
+pp11='n';pp12='n';pp13='n';pp14='n';pp15='n';
+pp16='n';pp17='n';pp18='n';pp19='n';pp20='n';
+pp21='n';pp22='n';pp23='n';pp24='n';pp25='n';
+pp26='n';pp27='n';pp28='n';pp29='n';pp30='n';
+pp31='n';pp32='n';pp33='n';pp34='n';pp35='n';           //WARTOSCI POL USTAWIANY NA 'N' CZYLI NIC
+pp36='n';pp37='n';pp38='n';pp39='n';pp40='n';
+pp41='n';pp42='n';
+kto='o';
+
+  p1->Enabled=true;
+  p2->Enabled=true;
+  p3->Enabled=true;
+  p4->Enabled=true;
+  p5->Enabled=true;
+  p6->Enabled=true;
+  p7->Enabled=true;
+  p8->Enabled=true;
+  p9->Enabled=true;
+  p10->Enabled=true;
+  p11->Enabled=true;
+  p12->Enabled=true;
+  p13->Enabled=true;                            //USTAWIAMY MOZLIWOSC KLIKNIECIA NA WSZYSTKIE POLA PO ZAKONCZONEKJ ROZGRYWCE
+  p14->Enabled=true;
+  p15->Enabled=true;
+  p16->Enabled=true;
+  p17->Enabled=true;
+  p18->Enabled=true;
+  p19->Enabled=true;
+  p20->Enabled=true;
+  p21->Enabled=true;
+  p22->Enabled=true;
+  p23->Enabled=true;
+  p24->Enabled=true;
+  p25->Enabled=true;
+  p26->Enabled=true;
+  p27->Enabled=true;
+  p28->Enabled=true;
+  p29->Enabled=true;
+  p30->Enabled=true;
+  p31->Enabled=true;
+  p32->Enabled=true;
+  p33->Enabled=true;
+  p34->Enabled=true;
+  p35->Enabled=true;
+  p36->Enabled=true;
+  p37->Enabled=true;
+  p38->Enabled=true;
+  p39->Enabled=true;
+  p40->Enabled=true;
+  p41->Enabled=true;
+  p42->Enabled=true;
+}
+//---------------------------------------------------------------------------
+
+
+
+
+void __fastcall TForm1::p1Click(TObject *Sender)
+{
+        if(pp1=='n'){
+          if(kto=='o'){
+                p1->Picture->LoadFromFile("img/o.bmp");
+                pp1='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+                i++;
+
+          }
+          else{
+          p1->Picture->LoadFromFile("img/x.bmp");
+                pp1='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+                i++  ;
+
+
+          }  p1->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p2Click(TObject *Sender)
+{
+ if(pp2=='n'){
+          if(kto=='o'){
+                p2->Picture->LoadFromFile("img/o.bmp");
+                pp2='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+                i++;
+
+          }
+          else{
+          p2->Picture->LoadFromFile("img/x.bmp");
+                pp2='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+                   i++;
+
+
+          }  p2->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p3Click(TObject *Sender)
+{
+ if(pp3=='n'){
+          if(kto=='o'){
+                p3->Picture->LoadFromFile("img/o.bmp");
+                pp3='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+                   i++;
+          }
+          else{
+          p3->Picture->LoadFromFile("img/x.bmp");
+                pp3='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+                    i++;
+
+          }  p3->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p4Click(TObject *Sender)
+{
+ if(pp4=='n'){
+          if(kto=='o'){
+                p4->Picture->LoadFromFile("img/o.bmp");
+                pp4='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+                         i++;
+          }
+          else{
+          p4->Picture->LoadFromFile("img/x.bmp");
+                pp4='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+                       i++;
+
+          }  p4->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p5Click(TObject *Sender)
+{
+ if(pp5=='n'){
+          if(kto=='o'){
+                p5->Picture->LoadFromFile("img/o.bmp");
+                pp5='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+                     i++;
+          }
+          else{
+          p5->Picture->LoadFromFile("img/x.bmp");
+                pp5='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+                     i++;
+
+          }  p5->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p6Click(TObject *Sender)
+{
+ if(pp6=='n'){
+          if(kto=='o'){
+                p6->Picture->LoadFromFile("img/o.bmp");
+                pp6='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+                 i++;
+          }
+          else{
+          p6->Picture->LoadFromFile("img/x.bmp");
+                pp6='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+                       i++;
+
+          }  p6->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p7Click(TObject *Sender)
+{
+ if(pp7=='n'){
+          if(kto=='o'){
+                p7->Picture->LoadFromFile("img/o.bmp");
+                pp7='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+                      i++;
+          }
+          else{
+          p7->Picture->LoadFromFile("img/x.bmp");
+                pp7='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+                        i++;
+
+          }  p7->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p8Click(TObject *Sender)
+{
+
+        if(pp8=='n'&& pp1!='n'){         //JEZELI POLE JEST PUSTE I COS ZNAJDUJE SIE POD POLEM
+          if(kto=='o'){          // JEZELI TURA KÓ£KA
+                p8->Picture->LoadFromFile("img/o.bmp");       // WSTAWIAMY KÓ£KO
+                pp8='o';                           //USTAWIAMY WARTOSC POLA NA KOLKO
+                kto='x';                           //USTAWIAMY TURE INNEGO GRACZA
+                tura->Picture->LoadFromFile("img/x.bmp");//ZMIENIAMY OBRAZEK TURY INNEGO GRACZA
+   i++;
+          }
+          else{
+          p8->Picture->LoadFromFile("img/x.bmp");
+                pp8='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+   i++;
+
+          }  p8->Enabled=false;    //NIE MOZEMY KLIKNAC NA POLE
+          sprawdz();             //  SPRAWDZAMY CZY KTOS NIE WYGRAL
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p9Click(TObject *Sender)
+{
+
+        if(pp9=='n'&& pp2!='n'){
+          if(kto=='o'){
+                p9->Picture->LoadFromFile("img/o.bmp");
+                pp9='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+   i++;
+          }
+          else{
+          p9->Picture->LoadFromFile("img/x.bmp");
+                pp9='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+   i++;
+
+          }  p9->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p10Click(TObject *Sender)
+{
+
+        if(pp10=='n'&& pp3!='n'){
+          if(kto=='o'){
+                p10->Picture->LoadFromFile("img/o.bmp");
+                pp10='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+   i++;
+          }
+          else{
+          p10->Picture->LoadFromFile("img/x.bmp");
+                pp10='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+   i++;
+
+          }  p10->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p11Click(TObject *Sender)
+{
+
+        if(pp11=='n'&& pp4!='n'){
+          if(kto=='o'){
+                p11->Picture->LoadFromFile("img/o.bmp");
+                pp11='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+   i++;
+          }
+          else{
+          p11->Picture->LoadFromFile("img/x.bmp");
+                pp11='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+   i++;
+
+          }  p11->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p12Click(TObject *Sender)
+{
+
+        if(pp12=='n'&& pp5!='n'){
+          if(kto=='o'){
+                p12->Picture->LoadFromFile("img/o.bmp");
+                pp12='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+   i++;
+          }
+          else{
+          p12->Picture->LoadFromFile("img/x.bmp");
+                pp12='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+   i++;
+
+          }  p12->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p13Click(TObject *Sender)
+{
+
+        if(pp13=='n'&& pp6!='n'){
+          if(kto=='o'){
+                p13->Picture->LoadFromFile("img/o.bmp");
+                pp13='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+   i++;
+          }
+          else{
+          p13->Picture->LoadFromFile("img/x.bmp");
+                pp13='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+   i++;
+
+          }  p13->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p14Click(TObject *Sender)
+{
+
+        if(pp14=='n'&& pp7!='n'){
+          if(kto=='o'){
+                p14->Picture->LoadFromFile("img/o.bmp");
+                pp14='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+   i++;
+          }
+          else{
+          p14->Picture->LoadFromFile("img/x.bmp");
+                pp14='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+   i++;
+
+          }  p14->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p15Click(TObject *Sender)
+{
+
+        if(pp15=='n'&& pp8!='n'){
+          if(kto=='o'){
+                p15->Picture->LoadFromFile("img/o.bmp");
+                pp15='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+   i++;
+          }
+          else{
+          p15->Picture->LoadFromFile("img/x.bmp");
+                pp15='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+   i++;
+
+          }  p15->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p16Click(TObject *Sender)
+{
+
+        if(pp16=='n'&& pp9!='n'){
+          if(kto=='o'){
+                p16->Picture->LoadFromFile("img/o.bmp");
+                pp16='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+   i++;
+          }
+          else{
+          p16->Picture->LoadFromFile("img/x.bmp");
+                pp16='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+   i++;
+
+          }  p16->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p17Click(TObject *Sender)
+{
+
+        if(pp17=='n'&& pp10!='n'){
+          if(kto=='o'){
+                p17->Picture->LoadFromFile("img/o.bmp");
+                pp17='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+   i++;
+          }
+          else{
+          p17->Picture->LoadFromFile("img/x.bmp");
+                pp17='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+   i++;
+
+          }  p17->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p18Click(TObject *Sender)
+{
+
+        if(pp18=='n'&& pp11!='n'){
+          if(kto=='o'){
+                p18->Picture->LoadFromFile("img/o.bmp");
+                pp18='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+   i++;
+          }
+          else{
+          p18->Picture->LoadFromFile("img/x.bmp");
+                pp18='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+   i++;
+
+          }  p18->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p19Click(TObject *Sender)
+{
+
+        if(pp19=='n'&& pp12!='n'){
+          if(kto=='o'){
+                p19->Picture->LoadFromFile("img/o.bmp");
+                pp19='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+   i++;
+          }
+          else{
+          p19->Picture->LoadFromFile("img/x.bmp");
+                pp19='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+   i++;
+
+          }  p19->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p20Click(TObject *Sender)
+{
+
+        if(pp20=='n'&& pp13!='n'){
+          if(kto=='o'){
+                p20->Picture->LoadFromFile("img/o.bmp");
+                pp20='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+   i++;
+          }
+          else{
+          p20->Picture->LoadFromFile("img/x.bmp");
+                pp20='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+   i++;
+
+          }  p20->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p21Click(TObject *Sender)
+{
+
+        if(pp21=='n'&& pp14!='n'){
+          if(kto=='o'){
+                p21->Picture->LoadFromFile("img/o.bmp");
+                pp21='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+   i++;
+          }
+          else{
+          p21->Picture->LoadFromFile("img/x.bmp");
+                pp21='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+   i++;
+
+          }  p21->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p22Click(TObject *Sender)
+{
+
+        if(pp22=='n'&& pp15!='n'){
+          if(kto=='o'){
+                p22->Picture->LoadFromFile("img/o.bmp");
+                pp22='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+   i++;
+          }
+          else{
+          p22->Picture->LoadFromFile("img/x.bmp");
+                pp22='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+   i++;
+
+          }  p22->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p23Click(TObject *Sender)
+{
+
+        if(pp23=='n'&& pp16!='n'){
+          if(kto=='o'){
+                p23->Picture->LoadFromFile("img/o.bmp");
+                pp23='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+   i++;
+          }
+          else{
+          p23->Picture->LoadFromFile("img/x.bmp");
+                pp23='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+   i++;
+
+          }  p23->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p24Click(TObject *Sender)
+{
+
+        if(pp24=='n'&& pp17!='n'){
+          if(kto=='o'){
+                p24->Picture->LoadFromFile("img/o.bmp");
+                pp24='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+   i++;
+          }
+          else{
+          p24->Picture->LoadFromFile("img/x.bmp");
+                pp24='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+   i++;
+
+          }  p24->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p25Click(TObject *Sender)
+{
+
+        if(pp25=='n'&& pp18!='n'){
+          if(kto=='o'){
+                p25->Picture->LoadFromFile("img/o.bmp");
+                pp25='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+   i++;
+          }
+          else{
+          p25->Picture->LoadFromFile("img/x.bmp");
+                pp25='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+   i++;
+
+          }  p25->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p26Click(TObject *Sender)
+{
+
+        if(pp26=='n'&& pp19!='n'){
+          if(kto=='o'){
+                p26->Picture->LoadFromFile("img/o.bmp");
+                pp26='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+   i++;
+          }
+          else{
+          p26->Picture->LoadFromFile("img/x.bmp");
+                pp26='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+   i++;
+
+          }  p26->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p27Click(TObject *Sender)
+{
+
+        if(pp27=='n'&& pp20!='n'){
+          if(kto=='o'){
+                p27->Picture->LoadFromFile("img/o.bmp");
+                pp27='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+   i++;
+          }
+          else{
+          p27->Picture->LoadFromFile("img/x.bmp");
+                pp27='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+   i++;
+
+          }  p27->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p28Click(TObject *Sender)
+{
+
+        if(pp28=='n'&& pp21!='n'){
+          if(kto=='o'){
+                p28->Picture->LoadFromFile("img/o.bmp");
+                pp28='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+   i++;
+          }
+          else{
+          p28->Picture->LoadFromFile("img/x.bmp");
+                pp28='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+   i++;
+
+          }  p28->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p29Click(TObject *Sender)
+{
+
+        if(pp29=='n'&& pp22!='n'){
+          if(kto=='o'){
+                p29->Picture->LoadFromFile("img/o.bmp");
+                pp29='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+   i++;
+          }
+          else{
+          p29->Picture->LoadFromFile("img/x.bmp");
+                pp29='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+   i++;
+
+          }  p29->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p30Click(TObject *Sender)
+{
+
+        if(pp30=='n'&& pp23!='n'){
+          if(kto=='o'){
+                p30->Picture->LoadFromFile("img/o.bmp");
+                pp30='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+   i++;
+          }
+          else{
+          p30->Picture->LoadFromFile("img/x.bmp");
+                pp30='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+   i++;
+
+          }  p30->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p31Click(TObject *Sender)
+{
+
+        if(pp31=='n'&& pp24!='n'){
+          if(kto=='o'){
+                p31->Picture->LoadFromFile("img/o.bmp");
+                pp31='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+   i++;
+          }
+          else{
+          p31->Picture->LoadFromFile("img/x.bmp");
+                pp31='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+   i++;
+
+          }  p31->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p32Click(TObject *Sender)
+{
+
+        if(pp32=='n'&& pp25!='n'){
+          if(kto=='o'){
+                p32->Picture->LoadFromFile("img/o.bmp");
+                pp32='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+   i++;
+          }
+          else{
+          p32->Picture->LoadFromFile("img/x.bmp");
+                pp32='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+   i++;
+
+          }  p32->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p33Click(TObject *Sender)
+{
+
+        if(pp33=='n'&& pp26!='n'){
+          if(kto=='o'){
+                p33->Picture->LoadFromFile("img/o.bmp");
+                pp33='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+   i++;
+          }
+          else{
+          p33->Picture->LoadFromFile("img/x.bmp");
+                pp33='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+   i++;
+
+          }  p33->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p34Click(TObject *Sender)
+{
+
+        if(pp34=='n'&& pp27!='n'){
+          if(kto=='o'){
+                p34->Picture->LoadFromFile("img/o.bmp");
+                pp34='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+   i++;
+          }
+          else{
+          p34->Picture->LoadFromFile("img/x.bmp");
+                pp34='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+   i++;
+
+          }  p34->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p35Click(TObject *Sender)
+{
+
+        if(pp35=='n'&& pp28!='n'){
+          if(kto=='o'){
+                p35->Picture->LoadFromFile("img/o.bmp");
+                pp35='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+   i++;
+          }
+          else{
+          p35->Picture->LoadFromFile("img/x.bmp");
+                pp35='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+   i++;
+
+          }  p35->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p36Click(TObject *Sender)
+{
+
+        if(pp36=='n'&& pp29!='n'){
+          if(kto=='o'){
+                p36->Picture->LoadFromFile("img/o.bmp");
+                pp36='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+   i++;
+          }
+          else{
+          p36->Picture->LoadFromFile("img/x.bmp");
+                pp36='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+   i++;
+
+          }  p36->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p37Click(TObject *Sender)
+{
+
+        if(pp37=='n'&& pp30!='n'){
+          if(kto=='o'){
+                p37->Picture->LoadFromFile("img/o.bmp");
+                pp37='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+   i++;
+          }
+          else{
+          p37->Picture->LoadFromFile("img/x.bmp");
+                pp37='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+   i++;
+
+          }  p37->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p38Click(TObject *Sender)
+{
+
+        if(pp38=='n'&& pp31!='n'){
+          if(kto=='o'){
+                p38->Picture->LoadFromFile("img/o.bmp");
+                pp38='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+   i++;
+          }
+          else{
+          p38->Picture->LoadFromFile("img/x.bmp");
+                pp38='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+   i++;
+
+          }  p38->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p39Click(TObject *Sender)
+{
+
+        if(pp39=='n'&& pp32!='n'){
+          if(kto=='o'){
+                p39->Picture->LoadFromFile("img/o.bmp");
+                pp39='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+   i++;
+          }
+          else{
+          p39->Picture->LoadFromFile("img/x.bmp");
+                pp39='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+   i++;
+
+          }  p39->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p40Click(TObject *Sender)
+{
+
+        if(pp40=='n'&& pp33!='n'){
+          if(kto=='o'){
+                p40->Picture->LoadFromFile("img/o.bmp");
+                pp40='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+   i++;
+          }
+          else{
+          p40->Picture->LoadFromFile("img/x.bmp");
+                pp40='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+   i++;
+
+          }  p40->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p41Click(TObject *Sender)
+{
+
+        if(pp41=='n'&& pp34!='n'){
+          if(kto=='o'){
+                p41->Picture->LoadFromFile("img/o.bmp");
+                pp41='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+   i++;
+          }
+          else{
+          p41->Picture->LoadFromFile("img/x.bmp");
+                pp41='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+   i++;
+
+          }  p41->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::p42Click(TObject *Sender)
+{
+
+        if(pp42=='n'&& pp35!='n'){
+          if(kto=='o'){
+                p42->Picture->LoadFromFile("img/o.bmp");
+                pp42='o';
+                kto='x';
+                tura->Picture->LoadFromFile("img/x.bmp");
+   i++;
+          }
+          else{
+          p42->Picture->LoadFromFile("img/x.bmp");
+                pp42='x';
+                kto='o';
+                tura->Picture->LoadFromFile("img/o.bmp");
+   i++;
+
+          }  p42->Enabled=false;
+          sprawdz();
+
+        }
+}
+//---------------------------------------------------------------------------
+
+
+
